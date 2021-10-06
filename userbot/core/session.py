@@ -30,6 +30,25 @@ except Exception as e:
     print(f"STRING_SESSION - {e}")
     sys.exit()
 
+if Config.STRING_SESSION2:
+    session = StringSession(str(Config.STRING_SESSION2))
+else:
+    session = "catuserbot"
+
+try:
+    catub2 = CatUserBotClient(
+        session=session,
+        api_id=Config.APP_ID,
+        api_hash=Config.API_HASH,
+        loop=loop,
+        app_version=__version__,
+        connection=ConnectionTcpAbridged,
+        auto_reconnect=True,
+        connection_retries=None,
+    )
+except Exception as e:
+    print(f"STRING_SESSION2 - {e}")
+    pass
 
 catub.tgbot = tgbot = CatUserBotClient(
     session="CatTgbot",
